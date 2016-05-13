@@ -1,0 +1,245 @@
+Script started on Thu 12 May 2016 08:49:51 PM CDT
+jo:~/ProgLang/Interpreter$ python MicroInterp.py Test1.scala
+
+Input:
+
+ 
+  object Test1
+ {
+  def main ( args : Array [ String ] ) {
+ var q : Int = 0 ;
+ var r : Int = 0 ;
+ var x : Int = 0 ;
+ var y : Int = 0 ;
+ x = 32 ; y = 5 ;
+ r = x ;
+ while ( r >= y )
+   { 
+ q = q + 1 ;
+ r = r - y ;
+   } 
+ println ( q ) ;
+ println ( r ) ;
+   }
+ }
+ 
+Output:
+
+6
+2
+
+jo:~/ProgLang/Interpreter$ python MicroInterp.py Test2.scala
+
+Input:
+
+ // Test2.scala
+ 
+ // List manipulatioon operators.
+ 
+  object Test2
+ {
+  def main ( args : Array [ String ] ) {
+ var my_list : List [ Int ] = Nil ;
+ var my_list_tl : List [ Int ] = Nil ;
+ var r : Int = 0 ;
+ var h : Int = 0 ;
+ r = 2 ;
+ while ( r < 5 )
+   { 
+ my_list = r :: my_list ;
+ r = r + 1 ;
+   } 
+ h = my_list . head ;
+ my_list_tl = my_list . tail ;
+ println ( h ) ;
+ println ( my_list_tl . head ) ;
+   }
+ }
+  
+ 
+Output:
+
+4
+3
+
+jo:~/ProgLang/Interpreter$ python MicroInterp.py Test3.scala
+
+Input:
+
+ // Test3.scala
+ 
+ // Non-recursive function.
+ 
+  object Test3
+ {
+   var h : Int = 0 ; // global variable
+ 
+  def area ( x : Int , y : Int ) : Int =
+   {
+ var z : Int = 0 ;
+ z = 2 * ( x * y + ( x * h ) + y * h ) ;
+ return z ;
+   }
+ 
+  def main ( args : Array [ String ] ) {
+ var a : Int = 0 ;
+ var b : Int = 0 ;
+ var s : Int = 0 ;
+ a = 3 ; b = 4 ;
+ h = 5 ;
+ s = area ( a , b ) ;
+ println ( s ) ;
+   }
+ }
+ 
+Output:
+
+94
+
+jo:~/ProgLang/Interpreter$ python MicroInterp.py Test4.scala
+
+Input:
+
+ // Test4.scala
+ 
+ // Recursive factorial function.
+ 
+  object Test4
+ {
+  def facto ( x : Int ) : Int =
+   {
+ var s : Int = 0 ;
+ if ( x == 1 )
+ s = 1 ;
+     else
+ s = x * facto ( x - 1 ) ;
+ return s ;
+   }
+ 
+ def main ( args : Array [ String ] )
+   {
+ var i : Int = 0 ;
+ var fac : Int = 0 ;
+ i = 4 ;
+ fac = facto ( i ) ;
+ println ( fac ) ;
+   }
+ }
+ 
+Output:
+
+24
+
+jo:~/ProgLang/Interpreter$ python MicroInterp.py Test5.scala
+
+Input:
+
+ // Test5.scala
+ 
+ // A simple recursive function on lists.
+ 
+  object Test5 {
+ 
+ var my_list : List [ Int ] = Nil ;
+ 
+  def cons_my_list ( r : Int ) : List [ Int ] =
+   {
+  if ( r <= 10 ) {
+ my_list = r :: my_list ;
+ my_list = cons_my_list ( r + 1 ) ;
+     }
+ return my_list ;
+   }
+ 
+ def main ( args : Array [ String ] )
+   {
+ var r : Int = 0 ;
+ r = 1 ;
+ my_list = Nil ;
+ my_list = cons_my_list ( r ) ;
+ println ( my_list . head ) ;
+   }
+ 
+ }
+ 
+Output:
+
+10
+
+jo:~/ProgLang/Interpreter$ python MicroInterp.py Test6.scala
+
+Input:
+
+ // Test6.scala
+ 
+ // Two recursive functions operating on lists.
+ 
+  object Test6 {
+ 
+  def cons_a_list ( r : Int , l : List [ Int ] ) : List [ Int ] =
+   {
+ var my_list : List [ Int ] = Nil ;
+  if ( r != 0 ) {
+ my_list = r :: my_list ;
+ my_list = cons_a_list ( r - 1 , my_list ) ;
+     }
+ return my_list ;
+   }
+ 
+  def equal ( list1 : List [ Int ] , list2 : List [ Int ] ) : Int =
+   {
+ var l1 : List [ Int ] = Nil ;
+ var l2 : List [ Int ] = Nil ;
+ var my_flag : Int = 0 ;
+ l1 = list1 ; l2 = list2 ;
+  while ( ! l1 . isEmpty && ! l2 . isEmpty && my_flag == 0 ) {
+ if ( l1 . head != l2 . head )
+ my_flag = 1 ;
+  else {
+ l1 = l1 . tail ;
+ l2 = l2 . tail ;
+ my_flag = equal ( l1 , l2 ) ;
+       }
+     }
+ if ( l1 . isEmpty && l2 . isEmpty )
+ my_flag = 0 ;
+     else
+ my_flag = 1 ;
+ return my_flag ;
+   }
+ 
+ def main ( args : Array [ String ] )
+   {
+ var r : Int = 0 ;
+ var h : Int = 0 ;
+ var l1 : List [ Int ] = Nil ;
+ var l2 : List [ Int ] = Nil ;
+ var l3 : List [ Int ] = Nil ;
+ var my_list : List [ Int ] = Nil ;
+ r = 10 ;
+     l1 = cons_a_list ( r , my_list ) ; 
+   l2 = cons_a_list ( r , my_list ) ; 
+   r = r - 1 ; 
+   l3 = cons_a_list ( r , my_list ) ; 
+ if ( equal ( l1 , l2 ) == 0 )
+ h = 1 ;
+     else
+ h = 0 ;
+ if ( equal ( l1 , l3 ) != 0 )
+ r = 1 ;
+     else
+ r = 0 ;
+ println ( h ) ;
+ println ( r ) ;
+   }
+ 
+ }
+ 
+Output:
+
+1
+0
+
+jo:~/ProgLang/Interpreter$ exit
+
+Script done on Thu 12 May 2016 08:50:59 PM CDT

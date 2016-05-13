@@ -1,0 +1,11 @@
+HW : MicroScala Interpreter
+Author : Jo
+License : Attribution-NonCommercial-ShareAlike 4.0 International (CC BY-NC-SA 4.0)
+
+Implemented in Python v2.7.3 or greater
+
+Run using : python MicrInterp.py ScalaFile.scala
+
+EX : python MicroInterp.py Test1.scala
+
+Example output of running on Test files 1-7 contained in output.txt
